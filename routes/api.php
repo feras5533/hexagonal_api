@@ -1,9 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\JsonResponse;
-use App\Models\User;
 use App\Http\Controllers\Api\AuthApi;
 
 
@@ -18,7 +15,5 @@ use App\Http\Controllers\Api\AuthApi;
 |
 */
 
-Route::post('/login', [\App\Http\Controllers\Api\AuthApi::class, 'login']);
-Route::post('/register', [\App\Http\Controllers\Api\AuthApi::class, 'register']);
-   
-
+Route::post('/login', [AuthApi::class, 'login']);
+Route::post('/register', [AuthApi::class, 'register']);

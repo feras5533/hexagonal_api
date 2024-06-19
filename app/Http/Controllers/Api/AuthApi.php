@@ -13,11 +13,11 @@ class AuthApi extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'user_name' => 'required',
+            'name' => 'required',
             'password' => 'required',
         ]);
 
-        $user = User::where('user_name', $request->user_name)->first();
+        $user = User::where('name', $request->name)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json(['result' => false], 404);
@@ -34,13 +34,13 @@ class AuthApi extends Controller
     {
 
         $request->validate([
-            'user_name' => 'required',
+            'name' => 'required',
             'email' => 'required',
             'password' => 'required',
         ]);
 
         $user = User::create([
-            'user_name' => $request->user_name,
+            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
